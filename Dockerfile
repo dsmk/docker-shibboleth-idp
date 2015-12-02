@@ -1,6 +1,6 @@
 FROM centos:centos7
 
-MAINTAINER John Gasper <jtgasper3@gmail.com>
+MAINTAINER David King <dsmk@bu.edu>
 
 ENV JRE_HOME /opt/jre1.8.0_60
 ENV JAVA_HOME /opt/jre1.8.0_60
