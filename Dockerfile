@@ -24,16 +24,16 @@ RUN set -x; \
     && rm jre-$java_version-linux-x64.tar.gz 
 
 # Add support for the unlimited 
-#RUN set -x; \
-#  jce_version=8; \
-#  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-#  "http://download.oracle.com/otn-pub/java/jce/$jce_version/jce_policy-$jce_version.zip" \
-#  && echo "f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59 jce_policy-$jce_version.zip" | sha256sum -c - \
-#  && unzip jce_policy-$jce_version.zip -d /opt \
-#  && mv "${JAVA_HOME}/lib/security/local_policy.jar" "/opt/UnlimitedJCEPolicyJDK8/local_policy.jar-strong" \
-#  && mv "${JAVA_HOME}/lib/security/US_export_policy.jar" "/opt/UnlimitedJCEPolicyJDK8/US_export_policy.jar-strong" \
-#  && cp -p /opt/UnlimitedJCEPolicyJDK8/US_export_policy.jar  "${JAVA_HOME}/lib/security/US_export_policy.jar" \
-#  && cp -p /opt/UnlimitedJCEPolicyJDK8/local_policy.jar  "${JAVA_HOME}/lib/security/local_policy.jar" 
+RUN set -x; \
+  jce_version=8; \
+  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+  "http://download.oracle.com/otn-pub/java/jce/$jce_version/jce_policy-$jce_version.zip" \
+  && echo "f3020a3922efd6626c2fff45695d527f34a8020e938a49292561f18ad1320b59 jce_policy-$jce_version.zip" | sha256sum -c - \
+  && unzip jce_policy-$jce_version.zip -d /opt \
+  && mv "${JAVA_HOME}/lib/security/local_policy.jar" "/opt/UnlimitedJCEPolicyJDK8/local_policy.jar-strong" \
+  && mv "${JAVA_HOME}/lib/security/US_export_policy.jar" "/opt/UnlimitedJCEPolicyJDK8/US_export_policy.jar-strong" \
+  && cp -p /opt/UnlimitedJCEPolicyJDK8/US_export_policy.jar  "${JAVA_HOME}/lib/security/US_export_policy.jar" \
+  && cp -p /opt/UnlimitedJCEPolicyJDK8/local_policy.jar  "${JAVA_HOME}/lib/security/local_policy.jar" 
   
 
 #http://ftp.ussg.iu.edu/eclipse/jetty/9.3.6.v20151106/dist/jetty-distribution-9.3.6.v20151106.zip
