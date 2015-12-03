@@ -9,7 +9,7 @@ ENV JETTY_BASE /opt/iam-jetty-base
 # this change was necessary for eduGAIN data
 #ENV JETTY_MAX_HEAP 512m
 ENV JETTY_MAX_HEAP 1024m
-ENV PATH $PATH:$JRE_HOME/bin:/opt/container-scripts
+ENV PATH $PATH:$JRE_HOME/bin:/opt/container-scripts:/opt/shibboleth/bin
 
 RUN yum -y update \
     && yum -y install wget tar unzip openssl
@@ -77,9 +77,10 @@ ADD iam-jetty-base/ /opt/iam-jetty-base/
 #RUN yum -y remove wget tar unzip; yum clean all
 
 RUN useradd jetty -U -s /bin/false \
+    && mkdir /opt/shibboleth-idp/metadata-cache \
     && chown -R jetty:root /opt/jetty \
     && chown -R jetty:root /opt/iam-jetty-base \
-    && chown -R jetty:root /opt/shibboleth-idp/logs
+    && chown -R jetty:root /opt/shibboleth-idp/logs /opt/shibboleth-idp/metadata-cache
 
 ADD container-scripts/ /opt/container-scripts/
 
